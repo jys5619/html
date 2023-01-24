@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRAME</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            color: #1e2022;
+            /* font: 13px 'Gothiche', 'Gothiche', 고딕체, Gothiche, sans-serif; */
+            font: 13px 'Gothic', 'Gothic', 고딕, Gothic, sans-serif;
+        }
+        body, div, span, nav, main, footer {
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        a {
+            text-decoration: none;;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 헤더 */
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #52616a;
+            border-bottom: 1px solid #1f4e5f;
+            height: 100px;
+        }
+
+        header .header-top {
+            position: relative;
+            height: 68px;
+            overflow: hidden;
+        }
+
+        header .header-top .header-top-title {
+            position: absolute;
+            padding-left: 30px;
+            font-size: 30px;
+            color: white;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        header .header-top .header-top-user {
+            position: absolute;
+            right: 30px;
+            bottom: 10px;
+        }
+
+        header .header-top .header-top-user span {
+            color: white;
+        }
+
+        header .header-top .header-top-user span label{
+            color: white;
+        }
+        /* // 헤더 */
+        
+        /* TOP MENU */
+        header .top-menu {
+            /* position: absolute; */
+            /* bottom: 0; */
+            background: #c9d6de;
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        header .top-menu div {
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            padding: 5px 16px;;
+        }
+        
+        header .top-menu .my-project {
+            border-right: 1px solid #1f4e5f;
+        }
+
+        header .top-menu div.right {
+            border-right: 1px solid #1f4e5f;
+        }	
+
+        header .top-menu div.left {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-wrap: 0;
+            border-left: 1px solid #1f4e5f;
+        }	
+
+        header .top-menu div.slice {
+            flex-grow: 1;
+        }	
+
+        header .top-menu div a {
+            font-weight:bold;
+            text-decoration:none;
+        }
+
+        /*  왼쪽 메뉴 */
+  
+        nav.left-menu {
+            background: f5f5f5;
+            
+        }
+
+        nav.left-menu input[type='radio'] {
+            display: none;
+        }
+
+        nav.left-menu input[type='radio'] + label {
+            display:block;
+            border-bottom: 0;
+            cursor: pointer;
+        }
+
+        nav.left-menu input[type='radio'] + label a {
+            position: relative;
+            display:block;
+            height: 45px;
+        }
+
+        nav.left-menu input[type='radio'] + label a span {
+            position: absolute;
+            color: red;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 20px;
+        }
+
+        nav.left-menu input[type='radio']:hover + label a span {
+            color: green !important;
+        }
+
+        nav.left-menu input[type='radio']:checked + label a {
+            background: #e2e9ee;
+        }
+
+        nav.left-menu input[type='radio']:checked + label a span {
+            color: #1f4e5f;
+        }
+        /* // 왼쪽 메뉴 */
+
+        .content {
+            display:flex;
+        }
+        .content nav {
+            flex: 0 0 300px;
+            background: #f4f7f7;
+            border-right: 1px solid #1f4e5f;
+        }
+        .content main{
+            flex: 1 0 300px;
+            /* height: 85vh; */
+            overflow-y: auto;
+            box-sizing: border-box;
+            background: #f4f7f7;
+        }
+
+        main .content-contain {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: stretch;
+            min-height: 80vh;
+            padding: 4px;
+            overflow: hidden;
+        }
+/* 
+        .content-item {
+            font-size: 14px;
+        } */
+
+        /*  아코디언 */
+        #accordion-ctrl input[id*='answer'] {
+            display: none;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label {
+            display:block;
+            padding: 10px;
+            color: #555555;
+            background: #dddddd;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #accordion-ctrl input[id*='answer']:checked + label {
+            display:block;
+            color: #111111;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label + div {
+            max-height: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #f5f5f5;
+            height: 100%;
+        }
+
+        #accordion-ctrl input[id*='answer']:checked + label + div {
+            max-height: 0;
+            padding: 5px 0;
+            overflow: hidden;
+            background: #f5f5f5;
+            height: 100%;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label + div label {
+            display:block;
+            padding: 5px 5px 5px 20px;
+            cursor: pointer;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label + div label input[type="radio"] {
+            display:none;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label + div label input[type="radio"]:hover + span {
+            font-weight: bold;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label + div label input[type="radio"]:checked + span {
+            color: #e63b3b ;
+            font-weight: bold;
+        }
+
+        #accordion-ctrl input[id*='answer']:checked + label + div {
+            max-height: 100%;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label em {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            transform: translateY(-50%);
+            display: inline-block;
+        }
+
+        #accordion-ctrl input[id*='answer'] + label em::after {
+            content: '';
+            top: 8px;
+            left: 8px;
+            width: 10px;
+            height: 10px;
+            background: #dddddd;
+            border-left: 3px solid #555555;
+            border-bottom: 3px solid #555555;
+            display: block;
+            position: absolute;
+            box-sizing: border-box;
+            transform: rotate(-45deg);
+        }
+
+        #accordion-ctrl input[id*='answer']:checked + label em::after {
+            content: '';
+            top: 12px;
+            border-right: 3px solid #111111;
+            border-top: 3px solid #111111;
+            border-left: 0;
+            border-bottom: 0;
+            display: block;
+            position: absolute;
+            box-sizing: border-box;
+            transform: rotate(-45deg);
+        }
+        /* // 아코디언 */
+        
+
+        
+        /* 임시 */
+        .icolor {
+            position: relative;
+            display: inline-block;
+            border: 10px solid black;
+            height: 150px;
+            width: 150px;
+        }
+
+        .icolor span {
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <span class="header-top-title">PPD - Project Program Data</span>
+                <span class="header-top-user">
+                    <span>
+                        <input type="radio" name="user-auth" id="admin-auth" checked>
+                        <label for="admin-auth">관리자모드</label>
+                        <input type="radio" name="user-auth" id="developer-auth">
+                        <label for="developer-auth">개발자모드</label>
+                    </span>
+                    <span>&nbsp;&nbsp;&nbsp;＠ 홍길동 대리 (개발팀)</span>
+                </span>
+            </div>
+            <div class="top-menu">
+                <div class="right my-project"><a href="#">진행프로젝트</a></div>
+                <div class="right"><a href="#">프로젝트</a></div>
+                <div class="right"><a href="#">프로그램</a></div>
+                <div class="right"><a href="#">데이터</a></div>
+                <div class="right"><a href="#">사용자</a></div>
+                <div class="right"><a href="#">설정</a></div>
+                <div class="slice"><a href="#">&nbsp;</a></div>
+                <div class="left"><a href="#">[TODO]</a> <a href="#">[MEMO]</a></div>
+            </ul>
+        </header>
+        <section class="content">
+            <!-- <nav class="left-menu">
+                <div class="left-menu-group">
+                    <div>프로그램관리</div>
+                    <input type="radio" name="left-menu" id="menu-system" checked>
+                    <label for="menu-system"><a><span>시스템관리</span></a></label>
+                    
+                    <input type="radio" name="left-menu" id="menu-program">
+                    <label for="menu-program"><a><span>시프로그램목록시</span></a></label>
+                    
+                    <input type="radio" name="left-menu" id="menu-template">
+                    <label for="menu-template"><a><span>시컨텐츠 제목 부분</span></a></label>
+                </div>
+            </nav> -->
+            <nav>
+                <div id="accordion-ctrl">
+                    <div class="accrodion">
+                        <input type="checkbox" id="answer01" checked>
+                        <label for="answer01">DB연결<em></em></label>
+                        <div>
+                            <label for="rdo01"><input type="radio" name="left-menu-sub" id="rdo01" checked><span>DB연결목록</span></label>
+                            <label for="rdo02"><input type="radio" name="left-menu-sub" id="rdo02"><span>DB연결</span></label>
+                        </div>
+
+                        <input type="checkbox" id="answer02" checked>
+                        <label for="answer02">Table그룹관리<em></em></label>
+                        <div>
+                            <label for="rdo03"><input type="radio" name="left-menu-sub" id="rdo03"><span>Table그룹관리</span></label>
+                            <label for="rdo04"><input type="radio" name="left-menu-sub" id="rdo04"><span>Table그룹</span></label>
+                            <label for="rdo05"><input type="radio" name="left-menu-sub" id="rdo05"><span>Table생성목록</span></label>
+                            <label for="rdo06"><input type="radio" name="left-menu-sub" id="rdo06"><span>Table</span></label>
+                        </div>
+
+                        <input type="checkbox" id="answer03" checked>
+                        <label for="answer03">Table그룹관리<em></em></label>
+                        <div>
+                            <label for="rdo07"><input type="radio" name="left-menu-sub" id="rdo07"><span>Table그룹관리</span></label>
+                            <label for="rdo08"><input type="radio" name="left-menu-sub" id="rdo08"><span>Table그룹</span></label>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <main>
+                <div class="content-contain">
+                    <div class="content-item">
+                        <div>색상</div>
+                        <div class="icolor" style="background:#333333;"><span style="color:#ffffff">#333333 #ffffff</span></div>
+                        <div class="icolor" style="background:#444444;"><span style="color:#ffffff">#444444 #ffffff</span></div>
+                        <div class="icolor" style="background:#555555;"><span style="color:#dddddd">#555555 #dddddd</span></div>
+                        <div class="icolor" style="background:#555555;"><span style="color:#ffffff;font-weight: 400;">#555555 #ffffff</span></div>
+                        <div class="icolor" style="background:#666666;"><span style="color:#dddddd">#666666 #dddddd</span></div>
+                        <div class="icolor" style="background:#f77c7c;"><span style="color:#dddddd">#f77c7c #dddddd</span></div>
+                    </div>
+                    <div class="content-item">
+                        <div>색상</div>
+                        <div class="icolor" style="background:#dddddd;"><span style="color:#555555">#dddddd #555555</span></div>
+                        <div class="icolor" style="background:#f5f5f5;"><span style="color:#111111">#f5f5f5 #111111</span></div>
+                    </div>
+                </div>
+            </main>
+        </section>
+    </div>
+</body>
+</html>
