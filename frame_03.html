@@ -59,18 +59,15 @@
             padding: 8px 24px;
         }
         
-        header .top-menu .my-project {
+        header > div.top-menu > div.project {
             border-right: 1px solid #1f4e5f;
             width: 300px;
         }
 
-        header .top-menu div.right {
-            border-right: 1px solid #1f4e5f;
-        }	
 
         header .top-menu div.slice {
             flex-grow: 1;
-        }	
+        }
 
         header .top-menu div a {
             font-weight:bold;
@@ -124,7 +121,6 @@
         
         div.tabbar > span {
             
-            margin-left: 1px;
             padding: 6px 10px;
             border-left: 1px solid #111111;
             border-right: 1px solid #111111;
@@ -198,10 +194,11 @@
     <div class="container">
         <header>
             <div class="top-menu">
-                <div class="right my-project">
+                <div class="project">
                     <a href="#">[ 🤸‍♂️ ] Sample</a>
                     <span><a href="#" style="float:right">X</a></span>
                 </div>
+                <div class="right"><a href="#">&nbsp;</a></div>
                 <div class="right"><a href="#">프로젝트</a></div>
                 <div class="right"><a href="#">프로그램</a></div>
                 <div class="right"><a href="#">데이터</a></div>
