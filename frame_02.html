@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FRAME</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            color: #1e2022;
+            /* font: 13px 'Gothiche', 'Gothiche', 고딕체, Gothiche, sans-serif; */
+            font: 14px 'Gothic', 'Gothic', 고딕, Gothic, sans-serif;
+        }
+        body, div, span, nav, main, footer {
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        body {
+            overflow-y: hidden;
+        }
+
+        a {
+            text-decoration: none;;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 300px auto;
+            grid-template-rows: 37px 37px auto;
+            background-color: #ffffff;
+            /* padding: 10px; */
+            height: 100vh;
+        }
+
+        /* 헤더 */
+        header {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #52616a;
+            border-bottom: 1px solid #1f4e5f;
+        }
+
+        header .top-menu {
+            /* position: absolute; */
+            /* bottom: 0; */
+            background: #c9d6de;
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+        }
+
+        header .top-menu div {
+            flex-wrap: wrap;
+            flex-shrink: 0;
+            padding: 8px 24px;
+        }
+        
+        header .top-menu .my-project {
+            border-right: 1px solid #1f4e5f;
+            width: 300px;
+        }
+
+        header .top-menu div.right {
+            border-right: 1px solid #1f4e5f;
+        }	
+
+        header .top-menu div.slice {
+            flex-grow: 1;
+        }	
+
+        header .top-menu div a {
+            font-weight:bold;
+            text-decoration:none;
+            font-size: 15px;
+        }
+
+        /*  왼쪽 메뉴 */
+        nav {
+            grid-row-start: 2;
+            grid-row-end: 4;
+            background: #f4f7f7;
+            border-right: 1px solid #1f4e5f;
+        }
+  
+        /*  왼쪽 메뉴 - 아코디언 */
+        nav.accordion-menu input[id*='answer'] {
+            display: none;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label {
+            display:block;
+            padding: 10px;
+            color: #555555;
+            background: #dddddd;
+            font-weight: bold;
+            cursor: pointer;
+            position: relative;
+        }
+
+        nav.accordion-menu input[id*='answer']:checked + label {
+            display:block;
+            color: #111111;
+            cursor: pointer;
+            position: relative;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label + div {
+            max-height: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #f5f5f5;
+            height: 100%;
+        }
+
+        nav.accordion-menu input[id*='answer']:checked + label + div {
+            max-height: 0;
+            padding: 5px 0;
+            overflow: hidden;
+            background: #f5f5f5;
+            height: 100%;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label + div label {
+            display:block;
+            padding: 5px 5px 5px 20px;
+            cursor: pointer;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label + div label input[type="radio"] {
+            display:none;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label + div label input[type="radio"]:hover + span {
+            font-weight: bold;
+        }
+/* 
+        nav.accordion-menu input[id*='answer'] + label + div label input[type="radio"]:checked + span {
+            color: #e63b3b ;
+            font-weight: bold;
+        } */
+
+        nav.accordion-menu input[id*='answer']:checked + label + div {
+            max-height: 100%;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label em {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            transform: translateY(-50%);
+            display: inline-block;
+        }
+
+        nav.accordion-menu input[id*='answer'] + label em::after {
+            content: '';
+            top: 8px;
+            left: 8px;
+            width: 10px;
+            height: 10px;
+            background: #dddddd;
+            border-left: 3px solid #555555;
+            border-bottom: 3px solid #555555;
+            display: block;
+            position: absolute;
+            box-sizing: border-box;
+            transform: rotate(-45deg);
+        }
+
+        nav.accordion-menu input[id*='answer']:checked + label em::after {
+            content: '';
+            top: 12px;
+            border-right: 3px solid #111111;
+            border-top: 3px solid #111111;
+            border-left: 0;
+            border-bottom: 0;
+            display: block;
+            position: absolute;
+            box-sizing: border-box;
+            transform: rotate(-45deg);
+        }
+        /*  // 왼쪽 메뉴 - 아코디언 */
+        /*  // 왼쪽 메뉴 */
+        
+        section {
+            display: flex;
+            overflow-y: auto;
+            background: yellow;
+        }
+
+        main {
+            flex: 1 0 100%;
+            display:flex;
+            box-sizing: border-box;
+            background: #fdfbfb;
+            overflow-y: auto;
+            background-color: #f1f4f5;
+            
+        }
+
+        main > div {
+            flex-direction: column;
+            overflow-x: auto;
+            padding: 10px;
+
+        }
+
+        main > div.content-main {
+            flex: 1 0 60%;
+        }
+
+        main > div.content-sub {
+            border-left: 1px solid #111111;
+            flex: 1 0 40%;
+        }
+
+        /* 임시 */
+        .icolor {
+            position: relative;
+            display: inline-block;
+            border: 10px solid black;
+            height: 150px;
+            width: 150px;
+        }
+
+        .icolor span {
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="top-menu">
+                <div class="right my-project">
+                    <a href="#">[ 🤸‍♂️ ] Sample</a>
+                    <span><a href="#" style="float:right">X</a></span>
+                </div>
+                <div class="right"><a href="#">프로젝트</a></div>
+                <div class="right"><a href="#">프로그램</a></div>
+                <div class="right"><a href="#">데이터</a></div>
+                <div class="right"><a href="#">사용자</a></div>
+                <div class="right"><a href="#">설정</a></div>
+                <div class="slice"><a href="#">&nbsp;</a></div>
+                <div><a href="#">📃 ▼ </a></div>
+                <div><a href="#">👩‍👧‍👦 ▼ </a></div>
+                <div><a href="#">🧑 ▼ </a></div>
+            </ul>
+        </header>
+        <nav class="accordion-menu">
+            <div class="accrodion">
+                <input type="checkbox" id="answer01" checked>
+                <label for="answer01">DB연결<em></em></label>
+                <div>
+                    <label for="rdo01"><input type="radio" name="left-menu-sub" id="rdo01" checked><span>DB연결목록</span></label>
+                    <label for="rdo02"><input type="radio" name="left-menu-sub" id="rdo02"><span>DB연결</span></label>
+                </div>
+
+                <input type="checkbox" id="answer02" checked>
+                <label for="answer02">Table그룹관리<em></em></label>
+                <div>
+                    <label for="rdo03"><input type="radio" name="left-menu-sub" id="rdo03"><span>Table그룹관리</span></label>
+                    <label for="rdo04"><input type="radio" name="left-menu-sub" id="rdo04"><span>Table그룹</span></label>
+                    <label for="rdo05"><input type="radio" name="left-menu-sub" id="rdo05"><span>Table생성목록</span></label>
+                    <label for="rdo06"><input type="radio" name="left-menu-sub" id="rdo06"><span>Table</span></label>
+                </div>
+
+                <input type="checkbox" id="answer03" checked>
+                <label for="answer03">Table그룹관리<em></em></label>
+                <div>
+                    <label for="rdo07"><input type="radio" name="left-menu-sub" id="rdo07"><span>Table그룹관리</span></label>
+                    <label for="rdo08"><input type="radio" name="left-menu-sub" id="rdo08"><span>Table그룹</span></label>
+                </div>
+            </div>
+        </nav>
+        <div class="toolbar">
+            tab
+        </div>
+        <section class="content">
+            <main>
+                <div class="content-main">
+                    <!-- <div class="content-item">
+                        <div>색상</div>
+                        <div class="icolor" style="background:#333333;"><span style="color:#ffffff">#333333 #ffffff</span></div>
+                        <div class="icolor" style="background:#444444;"><span style="color:#ffffff">#444444 #ffffff</span></div>
+                        <div class="icolor" style="background:#555555;"><span style="color:#dddddd">#555555 #dddddd</span></div>
+                        <div class="icolor" style="background:#555555;"><span style="color:#ffffff;font-weight: 400;">#555555 #ffffff</span></div>
+                        <div class="icolor" style="background:#666666;"><span style="color:#dddddd">#666666 #dddddd</span></div>
+                        <div class="icolor" style="background:#f77c7c;"><span style="color:#dddddd">#f77c7c #dddddd</span></div>
+                    </div> -->
+                 
+                    개발자 이거나 문서를 많이 작성하는 사람들에게는 효율성이 중요하다. 특히 단순한 작업을 할 떄는 동선을 최대한 줄이고 간단한 동작만으로 원하는 일을 처리해야 한다. 특히 VS code 와 같은 편집 툴에서는 파일을 생성하고 이름을 바꾸고 복사하고 붙여넣는 작업이 상시 이루어 지기 때문에 마우스나 터치패드를 이용하는 것은 효율적이지 못할 뿐만 아니라 매우 신경을 거슬리게 하는 작업이다. 따라서 이번 팁에서는 VS code에서 키보드 동작만으로 간단하게 파일을 제어하는 방법에 대해 알아보자.
+
+내가 이동한 위치에 파일 생성하기 #
+이 기능을 사용하려면 키 설정을 추가해줘야 한다. 기본 설정만으로는 디렉토리가 지정되지 않고 생성되어 원하는 곳에 다시 저장해줘야하는 불편함이 있다.
+
+                </div>
+                <div class="content-sub">
+               
+                        개발자 이거나 문서를 많이 작성하는 사람들에게는 효율성이 중요하다. 특히 단순한 작업을 할 떄는 동선을 최대한 줄이고 간단한 동작만으로 원하는 일을 처리해야 한다. 특히 VS code 와 같은 편집 툴에서는 파일을 생성하고 이름을 바꾸고 복사하고 붙여넣는 작업이 상시 이루어 지기 때문에 마우스나 터치패드를 이용하는 것은 효율적이지 못할 뿐만 아니라 매우 신경을 거슬리게 하는 작업이다. 따라서 이번 팁에서는 VS code에서 키보드 동작만으로 간단하게 파일을 제어하는 방법에 대해 알아보자.
+    
+    VS code에는 크게 세 영역으로 화면이 나누어져 있는데 파일 트리를 볼 수 있는 익스플로러와 편집창 그리고 하단에 터미널이 있다. 사용자의 선호에 따라 그리고 상황에 따라 이 영역구분은 변하기는 하지만 일반적인 구성은 이 세 부분으로 나뉜다.
+    
+    이 때 편집창에서 코드 혹은 문서를 작성하다가 새로운 파일을 만들거나 다른 파일을 찾는 경우에 기본적으로 팔렛트를 이용하거나 바로 파일 생성 단축키를 누르면 되지만 어떤 디렉토리의 목록을 보면서 파일을 선택하고 싶은 경우 익스플로러를 확인해야 한다.
+    
+    Explorer(⇧⌘E) 이동 #
+    위 단축키를 활용하면 커서의 포커스가 익스플로러로 이동한다. 여기서 디렉토리나 파일의 이름중 일부를 알고 있다면 바로 타이핑해서 검색할 수 있다.
+    
+    파일 열기(⌘[ArrowDown]) #
+    커맨드와 방향키 아래를 누르면 파일을 열어서 편집창에서 확인할 수 있다.
+    
+    이름 바꾸기(Enter) #
+    파일 열기(⌘[ArrowDown]) #
+    커맨드와 방향키 아래를 누르면 파일을 열어서 편집창에서 확인할 수 있다.
+    
+    이름 바꾸기(Enter) #
+    디렉토리나 파일 위에서 엔터를 누르면 파일명을 변경 할 수 있다.
+    
+    내가 이동한 위치에 파일 생성하기 #
+    이 기능을 사용하려면 키 설정을 추가해줘야 한다. 기본 설정만으로는 디렉토리가 지정되지 않고 생성되어 원하는 곳에 다시 저장해줘야하는 불편함이 있다.
+   
+                </div>
+            </main>
+        </section>
+    </div>
+</body>
+</html>
