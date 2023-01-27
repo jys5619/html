@@ -26,7 +26,7 @@
         }
         .container {
             display: grid;
-            grid-template-columns: 300px auto;
+            grid-template-columns: 300px auto;    /* 메뉴 숨기기 : 300px auto; 0 auto */
             grid-template-rows: 37px 37px auto;
             background-color: #ffffff;
             /* padding: 10px; */
@@ -35,7 +35,7 @@
 
         /* 헤더 */
         header {
-            grid-column-start: 1;
+            grid-column-start: 2;
             grid-column-end: 3;
             display: flex;
             flex-direction: column;
@@ -59,12 +59,6 @@
             padding: 8px 24px;
         }
         
-        header > div.top-menu > div.project {
-            /* border-right: 1px solid #1f4e5f; */
-            width: 300px;
-        }
-
-
         header .top-menu div.slice {
             flex-grow: 1;
         }
@@ -77,13 +71,28 @@
 
         /*  왼쪽 메뉴 */
         nav {
-            grid-row-start: 2;
+            grid-row-start: 1;
             grid-row-end: 4;
             background: #f4f7f7;
-            border-right: 1px solid #1f4e5f;
+            
         }
+
+        /* 메뉴 숨기기 */
+        /* nav > div {
+            display: none;
+        } */
+
+        
+        nav .logo {
+            height: 37px;
+            padding: 8px 24px;
+            background: #c9d6de;
+            border-bottom: 1px solid #1f4e5f;
+        }
+
   
         /*  왼쪽 메뉴 - 아코디언 */
+
         nav.accordion-menu input[id*='answer'] {
             display: none;
         }
@@ -189,6 +198,7 @@
             display: flex;
             align-items: flex-end;
             border-bottom: 1px solid #111111;
+            border-left: 1px solid #1f4e5f;
         }
 
         
@@ -200,9 +210,9 @@
             border-top: 1px solid #111111;
             border-top-right-radius: 10px;
             border-top-left-radius: 5px;
+            margin-left: 3px;
         }
 
-        
         div.tabbar > span > span.close {
             padding-left: 15px;
             padding-right: 5px;
@@ -214,6 +224,7 @@
             display: flex;
             overflow-y: auto;
             background: yellow;
+            border-left: 1px solid #1f4e5f;
         }
 
         main {
@@ -263,9 +274,35 @@
 </head>
 <body>
     <div class="container">
+        <nav class="accordion-menu">
+            <div class="logo"><a href="#">[ 🤸‍♂️ ] Sample</a></div>
+            <div class="accrodion">
+                <input type="checkbox" id="answer01" checked>
+                <label for="answer01">Search<em></em></label>
+                <div>
+                    <label for="rdo01"><input type="radio" name="left-menu-sub" id="rdo01" checked><span>DB연결목록</span></label>
+                    <label for="rdo02"><input type="radio" name="left-menu-sub" id="rdo02"><span>DB연결</span></label>
+                </div>
+
+                <input type="checkbox" id="answer02" checked>
+                <label for="answer02">Table그룹관리<em></em></label>
+                <div>
+                    <label for="rdo03"><input type="radio" name="left-menu-sub" id="rdo03"><span>Table그룹관리</span></label>
+                    <label for="rdo04"><input type="radio" name="left-menu-sub" id="rdo04"><span>Table그룹</span></label>
+                    <label for="rdo05"><input type="radio" name="left-menu-sub" id="rdo05"><span>Table생성목록</span></label>
+                    <label for="rdo06"><input type="radio" name="left-menu-sub" id="rdo06"><span>Table</span></label>
+                </div>
+
+                <input type="checkbox" id="answer03" checked>
+                <label for="answer03">Table그룹관리<em></em></label>
+                <div>
+                    <label for="rdo07"><input type="radio" name="left-menu-sub" id="rdo07"><span>Table그룹관리</span></label>
+                    <label for="rdo08"><input type="radio" name="left-menu-sub" id="rdo08"><span>Table그룹</span></label>
+                </div>
+            </div>
+        </nav>
         <header>
             <div class="top-menu">
-                <div class="project"><a href="#">[ 🤸‍♂️ ] Sample</a></div>
                 <div><a href="#">X</a></div>
                 <div><a href="#">프로젝트</a></div>
                 <div><a href="#">프로그램</a></div>
@@ -278,12 +315,6 @@
                 <div><a href="#">🧑</a></div>
             </ul>
         </header>
-        <nav class="normal-menu">
-            <div>
-                <span><a href="#">🎈 DB연결목록</a></span>
-                <span class="empty"><a href="#">DB연결목록</a></span>
-            </div>
-        </nav>
         <div class="tabbar">
             <span>tab01tab01tab01tab01tab01<span class="close">X</span></span>
             <span>tab02<span class="close">X</span></span>
@@ -301,15 +332,12 @@
                         <div class="icolor" style="background:#666666;"><span style="color:#dddddd">#666666 #dddddd</span></div>
                         <div class="icolor" style="background:#f77c7c;"><span style="color:#dddddd">#f77c7c #dddddd</span></div>
                     </div> -->
-                 
                     개발자 이거나 문서를 많이 작성하는 사람들에게는 효율성이 중요하다. 특히 단순한 작업을 할 떄는 동선을 최대한 줄이고 간단한 동작만으로 원하는 일을 처리해야 한다. 특히 VS code 와 같은 편집 툴에서는 파일을 생성하고 이름을 바꾸고 복사하고 붙여넣는 작업이 상시 이루어 지기 때문에 마우스나 터치패드를 이용하는 것은 효율적이지 못할 뿐만 아니라 매우 신경을 거슬리게 하는 작업이다. 따라서 이번 팁에서는 VS code에서 키보드 동작만으로 간단하게 파일을 제어하는 방법에 대해 알아보자.
 
 내가 이동한 위치에 파일 생성하기 #
 이 기능을 사용하려면 키 설정을 추가해줘야 한다. 기본 설정만으로는 디렉토리가 지정되지 않고 생성되어 원하는 곳에 다시 저장해줘야하는 불편함이 있다.
-
                 </div>
                 <div class="content-sub">
-               
                         개발자 이거나 문서를 많이 작성하는 사람들에게는 효율성이 중요하다. 특히 단순한 작업을 할 떄는 동선을 최대한 줄이고 간단한 동작만으로 원하는 일을 처리해야 한다. 특히 VS code 와 같은 편집 툴에서는 파일을 생성하고 이름을 바꾸고 복사하고 붙여넣는 작업이 상시 이루어 지기 때문에 마우스나 터치패드를 이용하는 것은 효율적이지 못할 뿐만 아니라 매우 신경을 거슬리게 하는 작업이다. 따라서 이번 팁에서는 VS code에서 키보드 동작만으로 간단하게 파일을 제어하는 방법에 대해 알아보자.
     
     VS code에는 크게 세 영역으로 화면이 나누어져 있는데 파일 트리를 볼 수 있는 익스플로러와 편집창 그리고 하단에 터미널이 있다. 사용자의 선호에 따라 그리고 상황에 따라 이 영역구분은 변하기는 하지만 일반적인 구성은 이 세 부분으로 나뉜다.
@@ -331,7 +359,9 @@
     
     내가 이동한 위치에 파일 생성하기 #
     이 기능을 사용하려면 키 설정을 추가해줘야 한다. 기본 설정만으로는 디렉토리가 지정되지 않고 생성되어 원하는 곳에 다시 저장해줘야하는 불편함이 있다.
-   
+유지, 체험 : 7월 30일 까지
+500M : 5500 - 6개월;
+
                 </div>
             </main>
         </section>
