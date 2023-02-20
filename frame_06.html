@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRAME</title>
+    <!-- Include the JS for AG Grid -->
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <!-- Include the core CSS, this is needed by the grid -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-grid.css"/>
+    <!-- Include the theme CSS, only need to import the theme you are going to use -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community/styles/ag-theme-alpine.css"/>
     <style>
         * {
             box-sizing: border-box;
@@ -319,7 +325,6 @@
             background: white;
         }
         /* // Main */
-
     </style>
 </head>
 <body>
@@ -420,15 +425,56 @@
                         </form>
                     </div>
                     <div class="main-grid">
-                        Grid
+                        <button onclick="deselect()">Deselect Rows</button>
+                        <div id="myGrid" class="ag-theme-alpine" style="height: 500px"></div>
                     </div>
                     <!-- // 업무 화면 -->
                 </div>
                 <div class="content-sub" style="max-width:100px;">
-                    Sub
                 </div>
             </main>
         </section>
     </div>
+    <script type="text/javascript">
+        // Function to demonstrate calling grid's API
+        function deselect(){
+            gridOptions.api.deselectAll()
+        }
+ 
+        // Grid Options are properties passed to the grid
+        const gridOptions = {
+ 
+          // each entry here represents one column
+          columnDefs: [
+            { field: "make" },
+            { field: "model" },
+            { field: "price" },
+          ],
+ 
+          // default col def properties get applied to all columns
+          defaultColDef: {sortable: true, filter: true},
+ 
+          rowSelection: 'multiple', // allow rows to be selected
+          animateRows: true, // have rows animate to new positions when sorted
+ 
+          // example event handler
+          onCellClicked: params => {
+            console.log('cell was clicked', params)
+          }
+        };
+ 
+        // get div to host the grid
+        const eGridDiv = document.getElementById("myGrid");
+        // new grid instance, passing in the hosting DIV and Grid Options
+        new agGrid.Grid(eGridDiv, gridOptions);
+ 
+        // Fetch data from server
+        fetch("https://www.ag-grid.com/example-assets/row-data.json")
+            .then(response => response.json())
+            .then(data => {
+            // load fetched data into grid
+            gridOptions.api.setRowData(data);
+            });
+    </script>
 </body>
 </html>
