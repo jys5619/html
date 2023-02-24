@@ -325,6 +325,20 @@
             background: white;
         }
         /* // Main */
+
+        .cell {
+            background: yellow;
+        }
+        .redNumberCell {
+            text-align: right;
+            color: red;
+            background-color: gainsboro;
+        }
+        .blueNumberCell {
+            text-align: right;
+            color: blue;
+            background-color: aliceblue;
+        }
     </style>
 </head>
 <body>
@@ -448,7 +462,14 @@
           columnDefs: [
             { field: "make" },
             { field: "model" },
-            { field: "price" },
+            { field: "price" , cellClassRules: {
+                'redNumberCell': params => params.data.price<33000,
+            }},
+            { field: "combo", cellEditor: 'agSelectCellEditor', cellEditorParams: {
+                    values: ['1','2', '3', '4']
+                }
+            }
+
           ],
  
           // default col def properties get applied to all columns
